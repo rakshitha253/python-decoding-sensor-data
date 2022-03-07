@@ -2,7 +2,7 @@ import pytest
 import json
 
 try:
-    from sensor.load_data import load_sensor_data 
+    from sensor.load_data import load_sensor_data
     recs = load_sensor_data()
 except ImportError:
     recs = 0
@@ -288,7 +288,7 @@ def test_load_data_load_recs_module1(parse):
     )
     assert (
         second_for_exist
-    ), """Do you have a second `for` loop, looping through `data_reader`? 
+    ), """Do you have a second `for` loop, looping through `data_reader`?
         Is the current loop value called `row`?
         Is this loop part of the `with` block?"""
 
@@ -321,7 +321,7 @@ def test_load_data_load_recs_module1(parse):
     # recs = load_sensor_data() # this is defined above
     assert (
         len(recs) == 2000
-    ), """The length of your sensor_data list is incorrect. 
+    ), """The length of your sensor_data list is incorrect.
         Are you scanning both data files?"""
 
 
@@ -329,14 +329,14 @@ def test_load_data_load_recs_module1(parse):
 @pytest.mark.test_sensor_app_load_data_return_module1
 def test_sensor_app_load_data_return_module1(parse):
     # First, let's verify the user did not accidentally deleted
-    # the two lines provided for them. 
+    # the two lines provided for them.
 
     # data = []                   # list to store data read from files
     # print("Sensor Data App")
 
     sensor = parse("sensor_app")
     assert sensor.success, sensor.message
-    
+
     original_data = (
         sensor.assign_().match(
             {
@@ -350,12 +350,12 @@ def test_sensor_app_load_data_return_module1(parse):
     )
     assert (
         original_data
-    ), """Do you have a `data` variable set to an empty list on top of the file? 
+    ), """Do you have a `data` variable set to an empty list on top of the file?
         You  need to have these two lines of code before you being testing Module1
-        data = []        
+        data = []
         print("Sensor Data App")
         """
-    
+
     print_app = (
         sensor.calls().match(
             {
@@ -371,16 +371,16 @@ def test_sensor_app_load_data_return_module1(parse):
     )
     assert (
         print_app
-    ), """Do you have a `print("Sensor Data App")` statement? 
+    ), """Do you have a `print("Sensor Data App")` statement?
         You  need to have these two lines of code before you being testing Module1
-        data = []            
+        data = []
         print("Sensor Data App")"""
 
 
     ######################################################
     # Now we can test the actual module
     ######################################################
-    
+
     # from load_data import load_sensor_data
     # data = load_sensor_data()
     # print("Loaded records {}".format(len(data)))
